@@ -1,0 +1,40 @@
+// Online C compiler to run C program online
+#include <stdio.h>
+#include <stdlib.h>
+int main() {
+    int rows, columns;
+    int **array;
+    printf("Enter number of rows");
+    scanf("%d", &rows);
+    printf("Enter number of columns");
+    scanf("%d",&columns);
+    array=(int**)malloc(rows*sizeof(int*));
+    if(array==NULL)
+    {
+        printf("Memory allocation failed for rows");
+        return 1;
+    }
+    
+    printf("Enter input elements");
+    for(int i=0;i<rows;i++)
+    {
+        for(int j=0;j<columns;j++)
+        {
+            printf("Element [%d][%d]", i,j);
+            scanf("%d",&array[i][j]);
+        }
+    }
+    for(int i=0;i<rows;i++)
+    {
+        for(int j=0;j<columns;j++)
+        {
+            printf("%d",array[i][j]);
+        }
+    }
+    for(int i=0;i<rows;i++)
+    {
+        free(array[i]);
+    }
+    free(array);
+    return 0;
+}
