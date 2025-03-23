@@ -1,0 +1,74 @@
+#include <stdio.h>
+#include <stdlib.h>
+struct Node
+{
+    int data;
+    struct Node* next;
+};
+
+struct Node* createNode(int data)
+{
+    struct Node* newNode=(struct Node*)malloc(sizeof(struct Node));
+    if(!newNode){
+        printf("Memory Allocation failed");
+        exit(1);
+    }
+    newNode->data=data;
+    newNode->next=NULL;
+    return newNode;
+}
+
+void push(struct Node** headRef, int data)
+{
+    struct Node* newNode=(struct Node*)malloc(sizeof(struct Node));
+    if(!newNode){
+        printf("Memory Allocation failed");
+        exit(1);
+    }
+    newNode->data=data;
+    newNode -> next=*headRef;
+    *headRef = newNode;
+}
+
+void findMiddle(struct Node* head)
+{
+    if(head==NULL)
+    {
+        printf("The list is empty");
+        return;
+    }
+    struct Node* slow=head;
+    struct Node* fast=head;
+    
+    while(fast !=NULL && fast->next !=NULL)
+    {
+        slow=slow->next;
+        fast=fast->next->next;
+    }
+    printf(" The middle element is: %d",slow->data);
+}
+
+
+void printList(struct Node* head)
+{
+    while(head != NULL)
+    {
+        printf("%d", head->data);
+        head=head->next;
+    }
+    
+}
+
+int main()
+{
+    struct Node* head= NULL;
+    push(&head, 5);
+    push(&head, 4);
+    push(&head, 3);
+    push(&head, 2);
+    push(&head, 1);
+    printf("LinkedList: ");
+    printList(head);
+    findMiddle(head);
+}
+
