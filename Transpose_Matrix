@@ -1,0 +1,58 @@
+#include <stdio.h>
+
+#define MAX 10
+
+// Function prototypes (explicit return types)
+static void inputMatrix(int matrix[MAX][MAX], int rows, int cols);
+static void transposeMatrix(int matrix[MAX][MAX], int transposed[MAX][MAX], int rows, int cols);
+static void printMatrix(int matrix[MAX][MAX], int rows, int cols);
+
+int main() {
+    int matrix[MAX][MAX], transposed[MAX][MAX];
+    int rows, cols;
+
+    printf("Enter number of rows: ");
+    scanf("%d", &rows);
+    printf("Enter number of columns: ");
+    scanf("%d", &cols);
+
+    inputMatrix(matrix, rows, cols); // Correct call
+    transposeMatrix(matrix, transposed, rows, cols);
+
+    printf("\nOriginal Matrix:\n");
+    printMatrix(matrix, rows, cols);
+    
+    printf("\nTransposed Matrix:\n");
+    printMatrix(transposed, cols, rows);
+
+    return 0;
+}
+
+// Function definitions
+static void inputMatrix(int matrix[MAX][MAX], int rows, int cols) {
+    printf("Enter elements of the matrix (%d x %d):\n", rows, cols);
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            printf("Element [%d][%d]: ", i, j);
+            scanf("%d", &matrix[i][j]);
+        }
+    }
+}
+
+static void transposeMatrix(int matrix[MAX][MAX], int transposed[MAX][MAX], int rows, int cols) {
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            transposed[j][i] = matrix[i][j];
+        }
+    }
+}
+
+static void printMatrix(int matrix[MAX][MAX], int rows, int cols) {
+    printf("Matrix (%d x %d):\n", rows, cols);
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            printf("%d ", matrix[i][j]);
+        }
+        printf("\n");
+    }
+}
